@@ -1,10 +1,8 @@
 import fs from "fs"
 import cpr from "child_process"
-import AdmZip from "adm-zip"
 
 const _ = console.log
 const args = process.argv.slice(2)
-const zip = new AdmZip()
 
 const run = ({ args }) => {
   _("[INFO] Build")
