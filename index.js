@@ -1,2 +1,2 @@
-const { askQuestion } = require("./dist/index")
-exports.askQuestion = askQuestion
+import { processOrder as run } from "./src/index"
+export const processOrder = run

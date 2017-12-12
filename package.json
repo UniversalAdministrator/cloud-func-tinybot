@@ -2,6 +2,7 @@
   "name": "sample-http",
   "version": "0.0.1",
   "dependencies": {
+    "adm-zip": "^0.4.7",
     "axios": "^0.17.1",
     "firebase-admin": "^5.5.0",
     "redux": "^3.7.2",
@@ -18,9 +19,9 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "build": "rm -rf dist && babel src --out-dir=dist && cp src/api/config.json dist/api/config.json",
+    "build": "babel-node scripts/deploy",
     "test": "babel-node scripts/run-test",
-    "7zip": "7z a question-survey-101.zip dist index.js package.json",
+    "7zip": "",
     "buildnzip": "yarn build && yarn 7zip"
   },
   "lint-staged": {
