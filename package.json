@@ -2,10 +2,8 @@
   "name": "sample-http",
   "version": "0.0.1",
   "dependencies": {
-    "adm-zip": "^0.4.7",
     "axios": "^0.17.1",
     "firebase-admin": "^5.5.0",
-    "redux": "^3.7.2",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
@@ -20,9 +18,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "build": "babel-node scripts/deploy",
-    "test": "babel-node scripts/run-test",
-    "7zip": "",
-    "buildnzip": "yarn build && yarn 7zip"
+    "test": "babel-node scripts/run-test"
   },
   "lint-staged": {
     "*.js": [
