@@ -24,3 +24,18 @@ export const getOrderList = async ({ oaid, secret, offset = 0, count: _count = 1
   const { data: { orders: orderList }, err } = extractData(res)
   return { orderList, err }
 }
+
+export const getOrderInfo = async ({ oaid, secret, orderid }) => {
+  const timestamp = new Date().getTime()
+  const mac = computeMac({ oaid, data: orderid, timestamp, secret })
+  const params = {
+    oaid,
+    orderid,
+    timestamp,
+    mac
+  }
+
+  const res = await axios.get(`${OA_ENDPOINT}/${ORDER_INFO_URI}`, { params })
+  const { data: orderInfo, err } = extractData(res)
+  return { orderInfo, err }
+}

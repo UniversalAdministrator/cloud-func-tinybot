@@ -24,3 +24,19 @@ export const getProductList = async ({ oaid, secret, offset = 0, count: _count =
   const { data: { products: productList }, err } = extractData(res)
   return { productList, err }
 }
+
+export const getProductInfo = async ({ oaid, secret, productid }) => {
+  const data = JSON.stringify({ productid })
+  const timestamp = new Date().getTime()
+  const mac = computeMac({ oaid, data, timestamp, secret })
+  const params = {
+    oaid,
+    data,
+    timestamp,
+    mac
+  }
+
+  const res = await axios.get(`${OA_ENDPOINT}/${PRODUCT_INFO_URI}`, { params })
+  const { data: productInfo, err } = extractData(res)
+  return { productInfo, err }
+}
