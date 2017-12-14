@@ -21,7 +21,7 @@ export const getProductList = async ({ oaid, secret, offset = 0, count: _count =
   }
 
   const res = await axios.get(`${OA_ENDPOINT}/${PRODUCT_LIST_URI}`, { params })
-  const { data: { products: productList }, err } = extractData(res)
+  const { data: { products: productList } = {}, err } = extractData(res)
   return { productList, err }
 }
 

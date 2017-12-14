@@ -1,7 +1,9 @@
+import { stringify as urlEncode } from "querystring"
 import { OA_ENDPOINT, computeMac, tiAxios as axios, extractData } from "./common"
 
 export const ORDER_LIST_URI = "store/order/getorderofoa"
 export const ORDER_INFO_URI = "store/order/getorder"
+export const UPDATE_ORDER_URI = "store/order/update"
 
 const _ = console.log
 
@@ -21,7 +23,7 @@ export const getOrderList = async ({ oaid, secret, offset = 0, count: _count = 1
   }
 
   const res = await axios.get(`${OA_ENDPOINT}/${ORDER_LIST_URI}`, { params })
-  const { data: { orders: orderList }, err } = extractData(res)
+  const { data: { orders: orderList } = {}, err } = extractData(res)
   return { orderList, err }
 }
 
@@ -38,4 +40,23 @@ export const getOrderInfo = async ({ oaid, secret, orderid }) => {
   const res = await axios.get(`${OA_ENDPOINT}/${ORDER_INFO_URI}`, { params })
   const { data: orderInfo, err } = extractData(res)
   return { orderInfo, err }
+}
+
+export const updateOrder = async ({ oaid, secret, orderid, orderData }) => {
+  const data = JSON.stringify({ orderid, ...orderData, reason: "Test api", cancelReason: "Just update, not cancel" })
+  const timestamp = new Date().getTime()
+  const mac = computeMac({ oaid, data, timestamp, secret })
+
+  const res = await axios.post(
+    `${OA_ENDPOINT}/${UPDATE_ORDER_URI}`,
+    urlEncode({
+      oaid,
+      data,
+      timestamp,
+      mac
+    })
+  )
+
+  const { data: { orderId } = {}, err } = extractData(res)
+  return { orderId, err }
 }
