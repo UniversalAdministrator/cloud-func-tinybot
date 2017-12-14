@@ -1,4 +1,4 @@
-import { getOrderList } from "../getProductOrderInfo"
+import { getOrderList } from "../getOrder"
 const _ = console.log
 const PASS = `\x1b[42m[PASS]\x1b[0m`
 const FAIL = `\x1b[41m[FAIL]\x1b[0m`
