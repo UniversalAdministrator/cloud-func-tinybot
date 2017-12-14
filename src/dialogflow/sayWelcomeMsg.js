@@ -1,0 +1,1 @@
+export const sayWelcomeMsg = async () => {}
