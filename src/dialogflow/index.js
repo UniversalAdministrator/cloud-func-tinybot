@@ -15,7 +15,7 @@ import { tellProductInfo } from "./tellProductInfo"
 import { tellOrderInfo } from "./tellOrderInfo"
 import { integrateBotMsgs } from "./integrateBotMsgs"
 
-export const endpoint = async (req, res) => {
+export const zaloShopRes = async (req, res) => {
   const { result: inMsg } = req.body
   const { parameters: { type } } = inMsg
 

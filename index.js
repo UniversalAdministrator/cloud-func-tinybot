@@ -1,2 +1,2 @@
-import { processOrder as run } from "./src/index"
-export const processOrder = run
+import { dialogWorkflow as run } from "./src/index"
+export const dialogWorkflow = run
