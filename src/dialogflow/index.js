@@ -13,11 +13,15 @@ import { tellDeliveryInfo } from "./tellDeliveryInfo"
 import { tellPaymentInfo } from "./tellPaymentInfo"
 import { tellProductInfo } from "./tellProductInfo"
 import { tellOrderInfo } from "./tellOrderInfo"
-import { integrateBotMsgs } from "./integrateBotMsgs"
+import { sendOut } from "./integrateBotMsgs"
+import { extractZaloCtx } from "./extractZaloCtx"
 
 export const zaloShopRes = async (req, res) => {
   const { result: inMsg } = req.body
   const { parameters: { type } } = inMsg
+  const zaloCtx = extractZaloCtx(req.body)
+
+  const { parameters: { fromuid: customerUid, oaid } } = zaloCtx
 
   let botMsgs = null
 
@@ -47,9 +51,16 @@ export const zaloShopRes = async (req, res) => {
       break
     }
     default: {
+      botMsgs = [
+        {
+          speech: "I see you ^^",
+          type: 0
+        }
+      ]
       break
     }
   }
 
-  integrateBotMsgs(res, botMsgs)
+  _("[botMsgs]", botMsgs)
+  await sendOut({ res, botMsgs, customerUid, oaid })
 }
