@@ -10,6 +10,9 @@ const run = ({ args }) => {
   _(cpr.execSync(`babel index.js --out-file=dist/index.js`).toString())
   _(cpr.execSync(`cp package.json dist/package.json`).toString())
 
+  _("[INFO] Cp .env")
+  _(cpr.execSync(`cp .env dist/.env`).toString())
+
   _("[INFO] Zip")
   _(cpr.execSync(`cd dist && 7z a tinybot.zip *`).toString())
 

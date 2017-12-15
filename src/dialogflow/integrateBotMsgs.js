@@ -13,7 +13,7 @@ export const sendOut = async ({ res, botMsgs, oaid, customerUid }) => {
   const waitArr = botMsgs.map(async msg => {
     const uid = customerUid
     const message = msg.speech
-    await sendMsg({ oaid, secret, uid, message })
+    return sendMsg({ oaid, secret, uid, message })
   })
 
   await Promise.all(waitArr)

@@ -16,6 +16,8 @@ import { tellOrderInfo } from "./tellOrderInfo"
 import { sendOut } from "./integrateBotMsgs"
 import { extractZaloCtx } from "./extractZaloCtx"
 
+const _ = console.log
+
 export const zaloShopRes = async (req, res) => {
   const { result: inMsg } = req.body
   const { parameters: { type } } = inMsg

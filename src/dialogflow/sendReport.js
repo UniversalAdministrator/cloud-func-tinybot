@@ -2,7 +2,8 @@ import { sendReport as send } from "../admin-api/sendReport"
 
 const _ = console.log
 
-export const sendReport = async reqBody => {
+export const sendReport = async (reqBody, debug) => {
+  if (debug) return debug
   const { result = {} } = reqBody
   const { metadata, parameters, score, resolvedQuery } = result
   const report = { metadata, parameters, score, resolvedQuery }
