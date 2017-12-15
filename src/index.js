@@ -10,7 +10,7 @@ export const dialogWorkflow = async (req, res) => {
 
   if (!zaloCtx) return null
 
-  heavyTasks.push(sendReport(req.body))
+  heavyTasks.push(sendReport(req.body, "debug"))
   await zaloShopRes(req, res)
   return Promise.all(heavyTasks)
 }
