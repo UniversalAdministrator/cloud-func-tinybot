@@ -20,12 +20,13 @@ const _ = console.log
 
 export const zaloShopRes = async (req, res) => {
   const { result: inMsg } = req.body
-  const { parameters: { type } } = inMsg
+  const { parameters: { type: _type } } = inMsg
   const zaloCtx = extractZaloCtx(req.body)
 
   const { parameters: { fromuid: customerUid, oaid } } = zaloCtx
 
   let botMsgs = null
+  const type = Array.isArray(_type) ? _type[0] : _type
 
   switch (type) {
     case INTERACT_WELCOME: {
