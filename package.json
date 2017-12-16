@@ -2,6 +2,7 @@
   "name": "sample-http",
   "version": "0.0.1",
   "dependencies": {
+    "algoliasearch": "^3.24.8",
     "axios": "^0.17.1",
     "dotenv": "^4.0.0",
     "firebase-admin": "^5.5.0",
