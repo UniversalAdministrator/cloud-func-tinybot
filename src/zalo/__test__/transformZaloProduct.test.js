@@ -17,6 +17,9 @@ _("")
     const { bginfo, fullTechInfo } = tinyProduct
     const shoudntHave = bginfo || fullTechInfo
     if (shoudntHave) return (pass = false)
+
+    const { origin } = tinyProduct
+    if (!origin) return (pass = false)
   } catch (err) {
     _(err)
     pass = false
