@@ -9,6 +9,7 @@ export const dialogWorkflow = async (req, res) => {
   const zaloCtx = extractZaloCtx(req.body)
 
   if (!zaloCtx) return null
+  _("[req.body]", req.body)
 
   heavyTasks.push(sendReport(req.body, "debug"))
   await zaloShopRes(req, res)

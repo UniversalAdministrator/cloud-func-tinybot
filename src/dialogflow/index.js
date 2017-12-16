@@ -64,6 +64,15 @@ export const zaloShopRes = async (req, res) => {
     }
   }
 
+  if (!type) {
+    const { fulfillment: { speech } } = inMsg
+    if (speech) {
+      _("[see fulfillment.speech]", speech)
+      botMsgs = [{ speech, type: 0 }]
+    }
+  }
+
   _("[botMsgs]", botMsgs)
+  _("[type]", type)
   await sendOut({ res, botMsgs, customerUid, oaid })
 }
