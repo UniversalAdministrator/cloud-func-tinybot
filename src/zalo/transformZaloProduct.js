@@ -13,20 +13,19 @@ export const getReadleName = key => {
   return keyName ? keyName : key
 }
 
-export const flatten = (carry, deepObj, _rootKey) => {
-  const rootKey = getReadleName(_rootKey)
-
+export const flatten = (carry, deepObj, rootKey) => {
   Object.keys(deepObj).forEach(key => {
+    const keyName = getReadleName(key)
     const flatVal = deepObj[key]
     const literal = isLiteral(flatVal)
 
     if (!literal) {
-      const subRootKey = `${rootKey} ${key}`
+      const subRootKey = `${rootKey} ${keyName}`
       flatten(carry, flatVal, subRootKey)
       return carry
     }
 
-    const newKey = `${rootKey} ${key}`
+    const newKey = `${rootKey} ${keyName}`
     carry[newKey] = flatVal
   })
 }
@@ -56,6 +55,10 @@ export const transformZaloProduct = zaloProduct => {
 
   _("[tinyProduct]", tinyProduct)
 
+  // Origin really large to sub in
+  // Delete heavy key
+  delete zaloProduct.fullTechInfo
+  delete zaloProduct.fullSaleInfo
   tinyProduct.origin = zaloProduct
 
   return { tinyProduct }

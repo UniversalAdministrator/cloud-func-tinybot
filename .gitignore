@@ -5,3 +5,4 @@ env.js
 dist
 *.zip
 /.env
+/phoneList.json
