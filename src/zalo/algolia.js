@@ -15,3 +15,8 @@ export const search = async searchStr => {
   })
   return { hits: tinyHits }
 }
+
+export const getRecord = async objectId => {
+  const record = await index.getObject(objectId)
+  return { record }
+}
